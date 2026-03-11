@@ -1,0 +1,36 @@
+type: google.api.Service
+config_version: 3
+name: css.googleapis.com
+title: CSS API
+
+apis:
+- name: google.shopping.css.v1.AccountLabelsService
+- name: google.shopping.css.v1.AccountsService
+- name: google.shopping.css.v1.CssProductInputsService
+- name: google.shopping.css.v1.CssProductsService
+
+documentation:
+  summary: css.googleapis.com API.
+
+authentication:
+  rules:
+  - selector: 'google.shopping.css.v1.AccountLabelsService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/content
+  - selector: 'google.shopping.css.v1.AccountsService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/content
+  - selector: 'google.shopping.css.v1.CssProductInputsService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/content
+  - selector: google.shopping.css.v1.CssProductsService.GetCssProduct
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/content
+  - selector: google.shopping.css.v1.CssProductsService.ListCssProducts
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/content

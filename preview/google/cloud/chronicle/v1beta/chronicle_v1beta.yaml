@@ -1,0 +1,69 @@
+type: google.api.Service
+config_version: 3
+name: chronicle.googleapis.com
+title: Chronicle API
+
+apis:
+- name: google.cloud.chronicle.v1beta.DataAccessControlService
+- name: google.cloud.chronicle.v1beta.EntityService
+- name: google.cloud.chronicle.v1beta.InstanceService
+- name: google.cloud.chronicle.v1beta.ReferenceListService
+- name: google.cloud.chronicle.v1beta.RuleService
+- name: google.longrunning.Operations
+
+documentation:
+  summary: The Chronicle API serves all customer endpoints.
+
+http:
+  rules:
+  - selector: google.longrunning.Operations.CancelOperation
+    post: '/v1beta/{name=projects/*/locations/*/instances/*/operations/*}:cancel'
+    body: '*'
+  - selector: google.longrunning.Operations.DeleteOperation
+    delete: '/v1beta/{name=projects/*/locations/*/instances/*/operations/*}'
+  - selector: google.longrunning.Operations.GetOperation
+    get: '/v1beta/{name=projects/*/locations/*/instances/*/operations/*}'
+  - selector: google.longrunning.Operations.ListOperations
+    get: '/v1beta/{name=projects/*/locations/*/instances/*}/operations'
+
+authentication:
+  rules:
+  - selector: 'google.cloud.chronicle.v1beta.DataAccessControlService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.cloud.chronicle.v1beta.EntityService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: google.cloud.chronicle.v1beta.InstanceService.GetInstance
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.cloud.chronicle.v1beta.ReferenceListService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.cloud.chronicle.v1beta.RuleService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.longrunning.Operations.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+
+publishing:
+  method_settings:
+  - selector: google.cloud.chronicle.v1beta.RuleService.CreateRetrohunt
+    long_running:
+      initial_poll_delay: 1s
+      poll_delay_multiplier: 2.0
+      max_poll_delay: 10s
+      total_poll_timeout: 900s
+  new_issue_uri: https://issuetracker.google.com/issues/new?component=1387895
+  documentation_uri: https://cloud.google.com/chronicle/docs/secops/secops-overview
+  api_short_name: chronicle
+  github_label: 'api: chronicle'
+  doc_tag_prefix: chronicle
+  organization: CLOUD
